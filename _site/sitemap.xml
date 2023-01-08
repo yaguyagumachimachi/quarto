@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://a892cabd-63a7-476c-9fc8-c0afb0bdb7b2.netlify.app/about.html</loc>
+    <lastmod>2023-01-07T08:14:59.776Z</lastmod>
+  </url>
+  <url>
+    <loc>https://a892cabd-63a7-476c-9fc8-c0afb0bdb7b2.netlify.app/index.html</loc>
+    <lastmod>2023-01-07T08:15:00.739Z</lastmod>
+  </url>
+  <url>
+    <loc>https://a892cabd-63a7-476c-9fc8-c0afb0bdb7b2.netlify.app/posts/hello-quarto/index.html</loc>
+    <lastmod>2023-01-07T08:15:01.347Z</lastmod>
+  </url>
+  <url>
+    <loc>https://a892cabd-63a7-476c-9fc8-c0afb0bdb7b2.netlify.app/posts/PodmanでRstudio環境構築/index.html</loc>
+    <lastmod>2023-01-07T08:15:02.467Z</lastmod>
+  </url>
+  <url>
+    <loc>https://a892cabd-63a7-476c-9fc8-c0afb0bdb7b2.netlify.app/posts/Rにパッケージをまとめてインストールする/index.html</loc>
+    <lastmod>2023-01-07T08:15:03.398Z</lastmod>
+  </url>
+  <url>
+    <loc>https://a892cabd-63a7-476c-9fc8-c0afb0bdb7b2.netlify.app/posts/welcome/index.html</loc>
+    <lastmod>2023-01-07T08:15:04.367Z</lastmod>
+  </url>
+</urlset>

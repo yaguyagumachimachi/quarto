@@ -1,0 +1,58 @@
+---
+title: "temp"
+author: "guchiguchi"
+date: today
+categories: [x, x]
+# image: "https://quarto.org/quarto.png"
+draft: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+## やりたいこと
+
+スクリプトに記載されている関数だけ読み込みたい。
+
+unit testなどでスクリプトを読み込むときに、 普通だとこうなってしまう。
+
+```{r}
+source("test.R")
+```
+
+何が困るかというと関数だけ読み込みたいのに、
+関数を処理もするところと一緒に書いてしまうと処理も走ってしまう。
+処理が重いと問題になる。。。
+
+```{r}
+# cmdsの各要素が関数かどうかの判定。
+# "<-"があって右側の最初がfunctionという文字かどうか
+detect_is_function <- function(cmd) {
+  if(cmd[[1]]=="<-") {
+    if(cmd[[3]][[1]]=="function") {
+      return(TRUE)
+    }
+  } else {
+    return(FALSE)
+  }
+}
+
+eval_functions <- function(path_r_script) {
+  cmds <- parse(path_r_script)
+  check_is_function <- map_lgl(cmds, detect_is_function)
+  return(eval(cmds[check_is_function], envir = .GlobalEnv)) # globalでないと関数内だけ
+}
+
+eval_functions("test.R")
+map(c("test.R", "test2.R"), eval_functions) # 複数ある場合はmapでもいける
+
+objects()
+```
+
+[参考](https://stackoverflow.com/questions/29131536/how-to-import-only-functions-from-r-file-without-executing-the-whole-file)
+
+## session
+
+```{r}
+sessioninfo::session_info()
+```

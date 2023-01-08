@@ -1,0 +1,11 @@
+[
+  {
+    "listing": "/index.html",
+    "items": [
+      "/posts/Rにパッケージをまとめてインストールする/index.html",
+      "/posts/PodmanでRstudio環境構築/index.html",
+      "/posts/hello-quarto/index.html",
+      "/posts/welcome/index.html"
+    ]
+  }
+]

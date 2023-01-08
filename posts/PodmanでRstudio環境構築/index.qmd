@@ -1,0 +1,163 @@
+---
+title: "PodmanでRstudio環境構築"
+author: "guchiguchi"
+date: "2023-1-2"
+categories: [Podman, R, Rstudio]
+image: "podman.png"
+draft: false
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+## はじめに
+
+WindowsでPodmanの分析環境を作成したときのメモ。
+dockerが一部有料化されてライセンスの確認など面倒、、、、
+
+と思い [podman](https://podman.io/)
+
+いろいろ躓いたのでめも。
+
+## Install
+
+### mac
+
+まずは適当にインストールする。
+
+macなら
+
+``` bash
+brew install podman
+```
+
+Podman Desktopもインストールしておくといいかも。
+
+<https://podman-desktop.io/>
+
+``` bash
+brew install podman-desktop
+```
+
+### Windows
+
+結構はまったので順番違うかも。Windowsのアップデートで立ち上がらなくなったりしたので注意。
+
+1.  wslのインストール確認
+
+    このあたりを確認する。<https://learn.microsoft.com/ja-jp/windows/wsl/install>
+
+    Powersehllで`wsl –help` すれば大体わかる
+
+2.  wslにPodmanインストール
+
+    Powershellからwslにはいる
+
+    ``` powershell
+    wsl
+    ```
+
+    なにをwslに入れたかによるがubuntuこれでならこれでインストール
+
+    ``` bash
+    sudo apt-get -y update
+    sudo apt-get -y install podman
+    ```
+
+3.  PC上にPodmanインストール
+
+    このあたりからダウンロードしてクリック
+
+    <https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md>
+
+    <https://github.com/containers/podman/releases>
+
+4.  Podman Desktopのインストール
+
+    <https://podman-desktop.io/>
+
+## machine init&start
+
+### メモリ, CPU, Disk
+
+docker desktopでは後で変更できた気がするが、
+podmanではわからなかった。。。 各自のPCスペックなどをもとに変えること。
+
+``` bash
+podman machine init --cpus 8 --memory 16384 --disk-size 500
+podman machine set --rootful
+podman machine start
+```
+
+## image pull
+
+imageをpullします。 自分のでもいいし、docker hubから持ってくるなど。
+
+``` bash
+podman pull docker.io/rocker/rstudio:latest
+```
+
+## podman run
+
+以下、Rstudioの環境のイメージ、rockerでのつまづきポイント。
+
+-   rootに設定しておく
+
+    -   権限の問題でrstudioが起動しない
+
+-   パスワードは設定しておく
+
+    -   昔は設定しない場合パスはrstudioでログインできた気がする。
+        どこのサイトかわすれたが最近設定しないとだめになったぽい。
+
+-   マウント
+
+    -   どこかローカルでもアクセスできないようにしないと面倒。
+
+-   個人的な好みだけどポートは変える
+
+    -   いくつかコンテナ作成すると競合したりするので。デフォルトは8787
+
+-   -dをわすれない
+
+    -   分析環境は立ち上げ続ける必要があるので。
+
+以下を反映するとこんな感じ
+
+``` bash
+podman run -ti -p 9787:8787 -e PASSWORD=sukina_word -e ROOT=TRUE -m=16g -v C:/Users/Documents/xxxx:/home/rstudio -d --name r_stan_env_pod rocker/rstudio:latest
+```
+
+## Login
+
+ポートを変えたので以下でログイン
+
+<http://localhost:9787/>
+
+ユーザー名:rstudio
+
+pass:podman run したときのPASSWORD
+
+## その他
+
+過去にコンテナを作成したディレクトリにマウントしたりすると権限の関係でエラーが出たりする。
+適宜コンテナにはいって ローカルマシンから
+
+``` bash
+podman exec -u root -it r_stan_env_pod bash
+```
+
+してコンテナ内に入り、ログを見ながら権限変更する
+
+``` bash
+chmod 777 -R /home/rstudio/.local/share/rstudio
+```
+
+Visual Sudio
+Codeでエクステンション入れていろいろ操作できるようにしたほうがいいかも。
+
+## session
+
+```{r}
+sessioninfo::session_info()
+```

@@ -1,0 +1,7 @@
+tidyverse
+furrr
+lubridate
+Hmisc
+readxl
+rmarkdown
+sessioninfo

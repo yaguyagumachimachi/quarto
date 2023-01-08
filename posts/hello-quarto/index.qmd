@@ -1,0 +1,115 @@
+---
+title: "Hello-Quarto"
+author: "guchiguchi"
+date: "2023-1-1"
+categories: [quarto, code, website]
+image: "https://quarto.org/quarto.png"
+draft: false
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+## 使ってみる
+
+ここにメモしたのは全部こちらからの抜粋なので
+[quartのドキュメントを見る。](https://quarto.org/docs/websites/)
+
+``` bash
+quarto create-project guchiguchi-weblog --type website:blog
+```
+
+で必要ファイルを作成して、
+
+``` bash
+quarto preview guchiguchi-weblog
+```
+
+を実行して表示されるアドレスにアクセス。
+Rstudioのproject作成からでもできる。
+
+## 個人的なメモ
+
+-   postsに投稿ごとのファイルを作る
+
+    postsディレクトリに投稿ごとのディレクトリを作成して、
+    その中にindex.qmdをつくる。使用したデータなどもここに入れる。
+    テンプレを作成してそれをコピペしてディレクトリ名をかえるとよさそう。
+
+-   draft: trueを設定する
+
+    trueにすると投稿されない。 常にtrueにしておいてfalseにかえる。
+
+-   投稿日を今日にしたい
+
+    date: todayに設定
+
+## フォーマット工夫点
+
+\_quarto.ymlをいじるとの微調整やテーマを変更できる。
+このサイトは以下のように変更
+
+``` yml
+project:
+  type: website
+
+website:
+  title: "website project"
+  navbar:
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/
+      - icon: twitter
+        href: https://twitter.com
+
+format:
+  html:
+    theme: solar
+    css: styles.css
+    toc: true
+    number-sections: true
+```
+
+以下デフォルトからの変更点
+
+### 左側にアウトラインを作成したい
+
+つまりマークダウンでの階層ごとにこういう表示できるようにしたかった。
+![image1](image.png)toc: trueを追加
+
+### 右上にgithubとかのアイコンを置きたい
+
+navbarを追加
+
+### テーマを変えたい
+
+themeで記述 ここから選ぶ
+
+https://quarto.org/docs/output-formats/html-themes.html
+
+### 自動でnumberingしてほし
+
+number-sections: true
+
+を追加
+
+## Publish
+
+いろいろ対応できるみたいだが、 Quarto hubでやってみた。
+
+1.  Quarto hubでアカウント作成してログイン
+2.  ターミナル上でpubulish実行
+
+``` bash
+quarto publish quarto-pub
+```
+
+自分の環境では勝手にwebに飛んで、apikeyなどの情報が作成された。
+\_publish.ymlに保存されるっぽい
+
+## 便利ツール
+
+画像などの素材
+
+https://icons.getbootstrap.com/

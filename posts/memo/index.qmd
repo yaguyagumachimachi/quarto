@@ -1,0 +1,34 @@
+---
+title: "temp"
+author: "guchiguchi"
+date: today
+categories: [x, x]
+# image: "https://quarto.org/quarto.png"
+draft: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+## Library
+
+```{r}
+#| eval: false
+library(tidyverse)
+print("a")
+
+```
+
+```{r}
+#| eval: true
+iris
+
+```
+
+
+## session
+
+```{r}
+sessioninfo::session_info()
+```
+

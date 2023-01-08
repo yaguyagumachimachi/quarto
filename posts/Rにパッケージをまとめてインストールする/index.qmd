@@ -1,0 +1,53 @@
+---
+title: "Install R packages"
+author: "guchiguchi"
+date: "2023-1-3"
+categories: [R, Install]
+# image: "https://quarto.org/quarto.png"
+draft: false
+execute:
+  freeze: true  # never re-render during project render
+---
+
+## はじめに
+
+環境ごとにいつもライブラリのインストールが面倒。 テキストでまとめて管理＆インストールする
+
+## まとめてインストール
+
+テキストに改行つきで記載しておく
+
+```{txt}
+tidyverse
+furrr
+lubridate
+Hmisc
+readxl
+```
+
+それをRで読み込んで実行
+
+```{r}
+#| eval: false
+install.packages(
+  scan("r_packages_list.txt", what = character(), sep = "\n", blank.lines.skip = TRUE),
+  dependencies = TRUE
+)
+```
+
+R stanは個別にいろいろやる
+
+<https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started>
+
+```{r}
+#| eval: false
+Sys.setenv(DOWNLOAD_STATIC_LIBV8 = 1) # only necessary for Linux without the nodejs library / headers
+install.packages("rstan", repos = "https://cloud.r-project.org/", dependencies = TRUE)
+example(stan_model, package = "rstan", run.dontrun = TRUE)
+```
+
+## Sessioninfo
+
+```{r}
+sessioninfo::session_info()
+```

@@ -1,0 +1,135 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "guchiguchi-weblog",
+    "section": "",
+    "text": "Install R packages\n\n\n\n\n\n\n\nR\n\n\nInstall\n\n\n\n\n\n\n\n\n\n\n\nJan 3, 2023\n\n\nguchiguchi\n\n\n\n\n\n\n  \n\n\n\n\nPodmanでRstudio環境構築\n\n\n\n\n\n\n\nPodman\n\n\nR\n\n\nRstudio\n\n\n\n\n\n\n\n\n\n\n\nJan 2, 2023\n\n\nguchiguchi\n\n\n\n\n\n\n  \n\n\n\n\nHello-Quarto\n\n\n\n\n\n\n\nquarto\n\n\ncode\n\n\nwebsite\n\n\n\n\n\n\n\n\n\n\n\nJan 1, 2023\n\n\nguchiguchi\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nJan 1, 2023\n\n\nguchiguchi\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/hello-quarto/index.html",
+    "href": "posts/hello-quarto/index.html",
+    "title": "Hello-Quarto",
+    "section": "",
+    "text": "ここにメモしたのは全部こちらからの抜粋なので quartのドキュメントを見る。\nquarto create-project guchiguchi-weblog --type website:blog\nで必要ファイルを作成して、\nquarto preview guchiguchi-weblog\nを実行して表示されるアドレスにアクセス。 Rstudioのproject作成からでもできる。"
+  },
+  {
+    "objectID": "posts/hello-quarto/index.html#個人的なメモ",
+    "href": "posts/hello-quarto/index.html#個人的なメモ",
+    "title": "Hello-Quarto",
+    "section": "2 個人的なメモ",
+    "text": "2 個人的なメモ\n\npostsに投稿ごとのファイルを作る\npostsディレクトリに投稿ごとのディレクトリを作成して、 その中にindex.qmdをつくる。使用したデータなどもここに入れる。 テンプレを作成してそれをコピペしてディレクトリ名をかえるとよさそう。\ndraft: trueを設定する\ntrueにすると投稿されない。 常にtrueにしておいてfalseにかえる。\n投稿日を今日にしたい\ndate: todayに設定"
+  },
+  {
+    "objectID": "posts/hello-quarto/index.html#フォーマット工夫点",
+    "href": "posts/hello-quarto/index.html#フォーマット工夫点",
+    "title": "Hello-Quarto",
+    "section": "3 フォーマット工夫点",
+    "text": "3 フォーマット工夫点\n_quarto.ymlをいじるとの微調整やテーマを変更できる。 このサイトは以下のように変更\nproject:\n  type: website\n\nwebsite:\n  title: \"website project\"\n  navbar:\n    right:\n      - about.qmd\n      - icon: github\n        href: https://github.com/\n      - icon: twitter\n        href: https://twitter.com\n\nformat:\n  html:\n    theme: solar\n    css: styles.css\n    toc: true\n    number-sections: true\n以下デフォルトからの変更点\n\n3.1 左側にアウトラインを作成したい\nつまりマークダウンでの階層ごとにこういう表示できるようにしたかった。 toc: trueを追加\n\n\n3.2 右上にgithubとかのアイコンを置きたい\nnavbarを追加\n\n\n3.3 テーマを変えたい\nthemeで記述 ここから選ぶ\nhttps://quarto.org/docs/output-formats/html-themes.html\n\n\n3.4 自動でnumberingしてほし\nnumber-sections: true\nを追加"
+  },
+  {
+    "objectID": "posts/hello-quarto/index.html#publish",
+    "href": "posts/hello-quarto/index.html#publish",
+    "title": "Hello-Quarto",
+    "section": "4 Publish",
+    "text": "4 Publish\nいろいろ対応できるみたいだが、 Quarto hubでやってみた。\n\nQuarto hubでアカウント作成してログイン\nターミナル上でpubulish実行\n\nquarto publish quarto-pub\n自分の環境では勝手にwebに飛んで、apikeyなどの情報が作成された。 _publish.ymlに保存されるっぽい"
+  },
+  {
+    "objectID": "posts/hello-quarto/index.html#便利ツール",
+    "href": "posts/hello-quarto/index.html#便利ツール",
+    "title": "Hello-Quarto",
+    "section": "5 便利ツール",
+    "text": "5 便利ツール\n画像などの素材\nhttps://icons.getbootstrap.com/"
+  },
+  {
+    "objectID": "posts/PodmanでRstudio環境構築/index.html",
+    "href": "posts/PodmanでRstudio環境構築/index.html",
+    "title": "PodmanでRstudio環境構築",
+    "section": "",
+    "text": "WindowsでPodmanの分析環境を作成したときのメモ。 dockerが一部有料化されてライセンスの確認など面倒、、、、\nと思い podman\nいろいろ躓いたのでめも。"
+  },
+  {
+    "objectID": "posts/PodmanでRstudio環境構築/index.html#install",
+    "href": "posts/PodmanでRstudio環境構築/index.html#install",
+    "title": "PodmanでRstudio環境構築",
+    "section": "2 Install",
+    "text": "2 Install\n\n2.1 mac\nまずは適当にインストールする。\nmacなら\nbrew install podman\nPodman Desktopもインストールしておくといいかも。\nhttps://podman-desktop.io/\nbrew install podman-desktop\n\n\n2.2 Windows\n結構はまったので順番違うかも。Windowsのアップデートで立ち上がらなくなったりしたので注意。\n\nwslのインストール確認\nこのあたりを確認する。https://learn.microsoft.com/ja-jp/windows/wsl/install\nPowersehllでwsl –help すれば大体わかる\nwslにPodmanインストール\nPowershellからwslにはいる\nwsl\nなにをwslに入れたかによるがこれでインストール\nsudo apt-get -y update\nsudo apt-get -y install podman\nPC上にPodmanインストール\nこのあたりからダウンロードしてクリック\nhttps://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md\nhttps://github.com/containers/podman/releases\nPodman Desktopのインストール\nhttps://podman-desktop.io/"
+  },
+  {
+    "objectID": "posts/PodmanでRstudio環境構築/index.html#machine-init",
+    "href": "posts/PodmanでRstudio環境構築/index.html#machine-init",
+    "title": "PodmanでRstudio環境構築",
+    "section": "3 machine init",
+    "text": "3 machine init\n\n3.1 メモリ, CPU, Disk\ndocker desktopでは後で変更できた気がするが、 podmanではわからなかった。。。 各自のPCスペックなどをもとに変えること。\npodman machine init --cpus 8 --memory 16384 --disk-size 500\npodman machine set --rootful\npodman machine start"
+  },
+  {
+    "objectID": "posts/PodmanでRstudio環境構築/index.html#image-pull",
+    "href": "posts/PodmanでRstudio環境構築/index.html#image-pull",
+    "title": "PodmanでRstudio環境構築",
+    "section": "4 image pull",
+    "text": "4 image pull\nimageをpullします。 自分のでもいいし、docker hubから持ってくるなど。\npodman pull docker.io/rocker/rstudio:latest"
+  },
+  {
+    "objectID": "posts/PodmanでRstudio環境構築/index.html#podman-run",
+    "href": "posts/PodmanでRstudio環境構築/index.html#podman-run",
+    "title": "PodmanでRstudio環境構築",
+    "section": "5 podman run",
+    "text": "5 podman run\n以下、Rstudioの環境のイメージ、rockerでのつまづきポイント。\n\nrootに設定しておく\n\n権限の問題でrstudioが起動しない\n\nパスワードは設定しておく\n\n昔は設定しない場合パスはrstudioでログインできた気がする。 どこのサイトかわすれたが最近設定しないとだめになったぽい。\n\nマウント\n\n例えば、“/Users//Desktop/”だったら”/mnt/Users/Desktop/test”にかえる。 init時のやり方でかえる。\n\n個人的な好みだけどポートは変える\n\nいくつかコンテナ作成すると競合したりするので。デフォルトは8787\n\n-dをわすれない\n\n分析環境は立ち上げ続ける必要があるので。\n\n\n以下を反映するとこんな感じ\npodman run -ti -p 9787:8787 -e PASSWORD=sukina_word -e ROOT=TRUE -m=16g -v C:/Users/ynwa1/Documents/study:/home/rstudio -d --name r_stan_env_pod rocker/rstudio:latest"
+  },
+  {
+    "objectID": "posts/PodmanでRstudio環境構築/index.html#login",
+    "href": "posts/PodmanでRstudio環境構築/index.html#login",
+    "title": "PodmanでRstudio環境構築",
+    "section": "6 Login",
+    "text": "6 Login\nポートを変えたので以下でログイン\nhttp://localhost:9787/\nユーザー名:rstudio\npass:podman run したときのPASSWORD"
+  },
+  {
+    "objectID": "posts/PodmanでRstudio環境構築/index.html#その他",
+    "href": "posts/PodmanでRstudio環境構築/index.html#その他",
+    "title": "PodmanでRstudio環境構築",
+    "section": "7 その他",
+    "text": "7 その他\n過去にコンテナを作成したディレクトリにマウントしたりすると権限の関係でエラーが出たりする。 適宜コンテナにはいって ローカルマシンから\npodman exec -u root -it r_stan_env_pod bash\nしてコンテナ内に入り、ログを見ながら権限変更する\nchmod 777 -R /home/rstudio/.local/share/rstudio"
+  },
+  {
+    "objectID": "posts/PodmanでRstudio環境構築/index.html#session",
+    "href": "posts/PodmanでRstudio環境構築/index.html#session",
+    "title": "PodmanでRstudio環境構築",
+    "section": "8 session",
+    "text": "8 session\n\nsessioninfo::session_info()\n\n─ Session info ───────────────────────────────────────────────────────────────\n setting  value\n version  R version 4.2.2 (2022-10-31)\n os       Ubuntu 22.04.1 LTS\n system   x86_64, linux-gnu\n ui       X11\n language (EN)\n collate  en_US.UTF-8\n ctype    en_US.UTF-8\n tz       Etc/UTC\n date     2023-01-07\n pandoc   2.19.2 @ /usr/local/bin/ (via rmarkdown)\n\n─ Packages ───────────────────────────────────────────────────────────────────\n package     * version date (UTC) lib source\n cli           3.5.0   2022-12-20 [1] RSPM (R 4.2.0)\n digest        0.6.31  2022-12-11 [1] RSPM (R 4.2.0)\n evaluate      0.19    2022-12-13 [1] RSPM (R 4.2.0)\n fastmap       1.1.0   2021-01-25 [1] RSPM (R 4.2.0)\n glue          1.6.2   2022-02-24 [1] RSPM (R 4.2.0)\n htmltools     0.5.4   2022-12-07 [1] RSPM (R 4.2.0)\n htmlwidgets   1.6.0   2022-12-15 [1] RSPM (R 4.2.0)\n jsonlite      1.8.4   2022-12-06 [1] RSPM (R 4.2.0)\n knitr         1.41    2022-11-18 [1] RSPM (R 4.2.0)\n lifecycle     1.0.3   2022-10-07 [1] RSPM (R 4.2.0)\n magrittr      2.0.3   2022-03-30 [1] RSPM (R 4.2.0)\n rlang         1.0.6   2022-09-24 [1] RSPM (R 4.2.0)\n rmarkdown     2.19    2022-12-15 [1] RSPM (R 4.2.0)\n sessioninfo   1.2.2   2021-12-06 [1] RSPM (R 4.2.0)\n stringi       1.7.8   2022-07-11 [1] RSPM (R 4.2.0)\n stringr       1.5.0   2022-12-02 [1] RSPM (R 4.2.0)\n vctrs         0.5.1   2022-11-16 [1] RSPM (R 4.2.0)\n xfun          0.36    2022-12-21 [1] RSPM (R 4.2.0)\n yaml          2.3.6   2022-10-18 [1] RSPM (R 4.2.0)\n\n [1] /usr/local/lib/R/site-library\n [2] /usr/local/lib/R/library\n\n──────────────────────────────────────────────────────────────────────────────"
+  },
+  {
+    "objectID": "posts/Rにパッケージをまとめてインストールする/index.html",
+    "href": "posts/Rにパッケージをまとめてインストールする/index.html",
+    "title": "temp",
+    "section": "",
+    "text": "環境ごとにいつもライブラリのインストールが面倒。 テキストでまとめて管理＆インストールする"
+  },
+  {
+    "objectID": "posts/Rにパッケージをまとめてインストールする/index.html#まとめてインストール",
+    "href": "posts/Rにパッケージをまとめてインストールする/index.html#まとめてインストール",
+    "title": "temp",
+    "section": "2 まとめてインストール",
+    "text": "2 まとめてインストール\nテキストに改行つきで記載しておく\n\ntidyverse\nfurrr\nlubridate\nHmisc\nreadxl\n\nそれをRで読み込んで実行\n\ninstall.packages(\n  scan(\"r_packages_list.txt\", what = character(), sep = \"\\n\", blank.lines.skip = TRUE),\n  dependencies = TRUE\n)\n\nR stanは個別にいろいろやる\nhttps://github.com/stan-dev/rstan/wiki/RStan-Getting-Started\n\nSys.setenv(DOWNLOAD_STATIC_LIBV8 = 1) # only necessary for Linux without the nodejs library / headers\ninstall.packages(\"rstan\", repos = \"https://cloud.r-project.org/\", dependencies = TRUE)\nexample(stan_model, package = \"rstan\", run.dontrun = TRUE)"
+  },
+  {
+    "objectID": "posts/Rにパッケージをまとめてインストールする/index.html#session",
+    "href": "posts/Rにパッケージをまとめてインストールする/index.html#session",
+    "title": "temp",
+    "section": "3 session",
+    "text": "3 session\n\nsessioninfo::session_info()\n\n─ Session info ───────────────────────────────────────────────────────────────\n setting  value\n version  R version 4.2.2 (2022-10-31)\n os       Ubuntu 22.04.1 LTS\n system   x86_64, linux-gnu\n ui       X11\n language (EN)\n collate  en_US.UTF-8\n ctype    en_US.UTF-8\n tz       Etc/UTC\n date     2023-01-07\n pandoc   2.19.2 @ /usr/local/bin/ (via rmarkdown)\n\n─ Packages ───────────────────────────────────────────────────────────────────\n package     * version date (UTC) lib source\n cli           3.5.0   2022-12-20 [1] RSPM (R 4.2.0)\n digest        0.6.31  2022-12-11 [1] RSPM (R 4.2.0)\n evaluate      0.19    2022-12-13 [1] RSPM (R 4.2.0)\n fastmap       1.1.0   2021-01-25 [1] RSPM (R 4.2.0)\n glue          1.6.2   2022-02-24 [1] RSPM (R 4.2.0)\n htmltools     0.5.4   2022-12-07 [1] RSPM (R 4.2.0)\n htmlwidgets   1.6.0   2022-12-15 [1] RSPM (R 4.2.0)\n jsonlite      1.8.4   2022-12-06 [1] RSPM (R 4.2.0)\n knitr         1.41    2022-11-18 [1] RSPM (R 4.2.0)\n lifecycle     1.0.3   2022-10-07 [1] RSPM (R 4.2.0)\n magrittr      2.0.3   2022-03-30 [1] RSPM (R 4.2.0)\n rlang         1.0.6   2022-09-24 [1] RSPM (R 4.2.0)\n rmarkdown     2.19    2022-12-15 [1] RSPM (R 4.2.0)\n sessioninfo   1.2.2   2021-12-06 [1] RSPM (R 4.2.0)\n stringi       1.7.8   2022-07-11 [1] RSPM (R 4.2.0)\n stringr       1.5.0   2022-12-02 [1] RSPM (R 4.2.0)\n vctrs         0.5.1   2022-11-16 [1] RSPM (R 4.2.0)\n xfun          0.36    2022-12-21 [1] RSPM (R 4.2.0)\n yaml          2.3.6   2022-10-18 [1] RSPM (R 4.2.0)\n\n [1] /usr/local/lib/R/site-library\n [2] /usr/local/lib/R/library\n\n──────────────────────────────────────────────────────────────────────────────"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "Rとかデータをいじるときの個人用メモ。 間違っていたら優しく教えてください。"
+  }
+]
