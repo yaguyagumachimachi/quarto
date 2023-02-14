@@ -1,0 +1,224 @@
+---
+title: "VisualStudioCodeでRを使う"
+author: "guchiguchi"
+date: today
+categories: [VisualStudioCode, R]
+image: "vscode.png"
+draft: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+## はじめに
+
+必要なセッティングなどはこちらに
+
+setting.json・・・タブ設定などで今回は利用。lintrなどの設定でも利用できる。
+
+extetinon.json・・・エクステンションのレコメンド部分におすすめとして表示
+
+keybindings.json・・・ショートカットキーの設定など。これだけは.vscodeに配置してもだめ。個人設定を変える必要あり。
+
+worksapce・・・ほとんどのsetting.jsonとextention.jsonの記述はできる。
+
+## Rを実行できるようにする
+
+R実行とdebugに必要なエクステンションをインストールする。画像のものが必要。インストール後はshift +
+enterで実行でき、コンソール上にRが立ち上がるはず。エクステンション実行時に自動でインストールされるはずだが、languageserverが必要。debugツールに関してはvscDebuggerが必要。
+
+```{r}
+#| eval: false
+#| echo: false
+install.packages("languageserver")
+devtools::install_github("ManuelHentschel/vscDebugger")  # debuggerも使う場合
+```
+
+![extention1](extention1.png){fig-align="center"}
+
+.vscodeフォルダーにextensions.jsonを作成して管理するのがいいかも。
+
+## ショートカットキーの設定
+
+個人的な理解として、全体とエクステンションのキー設定が存在。どちらが優先されるかは設定の書き方の順番によったり複雑。またショートカットキーの設定は.vscodeやワークスペースで管理できないらしい。
+
+とりあえずこれをkeybindings.jsonに書けばR, Rmd, qmdの、
+
+-   "%\>%"
+
+-   " \<- "
+
+-   ```` "{r}``` ``` ````
+
+は入るようになるはず。
+
+``` json
+
+// Place your key bindings in this file to override the defaults
+[
+  {
+    "key": "alt+-",
+    "command": "type",
+    "when": "editorLangId =~ /r|rmd|qmd/ && editorTextFocus",
+    "args": {"text": " <- "}
+  },
+  {
+    "key": "ctrl+shift+m",
+    "command": "-workbench.actions.view.problems",
+    "when": "editorLangId =~ /r|rmd|qmd/ && editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+m",
+    "command": "type",
+    "when": "editorLangId =~ /r|rmd|qmd/ && editorTextFocus",
+    "args": {"text": " %>% "}
+  },
+
+  // input indicative of r markdown code chunk
+  // 順番が大事
+  {
+    "key": "ctrl+alt+i",
+    "command": "quarto.insertCodeCell"
+  },
+  {
+    "key": "ctrl+shift+i",
+    "command": "-quarto.insertCodeCell"
+  },
+  {
+    "key": "ctrl+alt+i",
+    "command": "editor.action.insertSnippet",
+    "when": "editorLangId =~ /rmd|qmd/ && editorTextFocus",
+    "args": {
+        "snippet": "```{r}\n${TM_SELECTED_TEXT}$0\n```"
+    },
+    "label": "input indicative of r markdown code chunk"
+  },
+
+  // you can also input indicative of code chunk in `r` file by inserting "# %% ":
+  // specifics in `https://github.com/REditorSupport/vscode-R/pull/662`
+  {
+    "key": "ctrl+shift+i",
+    "command": "editor.action.insertSnippet",
+    "when": "editorTextFocus && editorLangId == 'r'",
+    "args": {
+        "snippet": "$LINE_COMMENT %% "
+    },
+    "label": "input indicative of code chunk"
+  },
+
+  // open help panel for selection
+  {
+    "key": "f1",
+    "command": "r.helpPanel.openForSelection",
+    "when": "editorTextFocus && editorLangId == 'r' || editorTextFocus && editorLangId == 'rmd'"
+  },
+
+  // RStudio keybinding for R Package development
+  {
+    "key": "ctrl+shift+b",
+    "command": "r.install",
+    "when": "resourceLangId == 'r'"
+  },
+  {
+    "key": "ctrl+shift+e",
+    "command": "r.check",
+    "when": "resourceLangId == 'r'"
+  },
+  {
+    "key": "ctrl+shift+t",
+    "command": "r.test",
+    "when": "resourceLangId == 'r'"
+  },
+  {
+    "key": "ctrl+shift+d",
+    "command": "r.document",
+    "when": "resourceLangId == 'r'"
+  },
+  {
+    "key": "ctrl+shift+l",
+    "command": "r.loadAll",
+    "when": "resourceLangId == 'r'"
+  },
+  {
+    "key": "ctrl+alt+p",
+    "command": "r.runCommand",
+    "when": "editorTextFocus && editorLangId == 'r'",
+    "args": ".vsc.browser(httpgd::hgd_url(), viewer = \"Beside\")"
+  }
+]
+```
+
+keybindings.jsonはCtr + Shift + Pでコマンドパレットを開き、
+
+keyboardと入力して画像の箇所をクリックすればOK。（なぜかkeybindingsで検索しても出ない）
+
+![cp_keyboardjson](keyboardjoson.png)
+
+**参考**
+
+[Key Bindings for Visual Studio
+Code](https://code.visualstudio.com/docs/getstarted/keybindings)
+
+[vscode-R Keyboard
+shortcuts](https://github.com/REditorSupport/vscode-R/wiki/Keyboard-shortcuts)
+
+## tabと改行をRstudioみたいにしたい
+
+Rでは（Rstudioでは？）タブがスペース２つだがVScodeはデフォルトでタブが４スペース。
+
+R系のファイルで作業しているときは２つにしたい。。。
+
+あと改行したときに前行のタブ分スペースを入れてほしい。。。。
+
+setting.jsonに以下を書きこむ。おそらくプロジェクトごとに変更すると思うので、rootディレクトリ(open
+folderで設定したディレクトリ)に.vscodeのフォルダが作成されているので、そこにsetting.jsonを作成して設定するのがいいはず。workspaceで設定もできる。
+
+``` json
+{
+        "[r]": { 
+            "editor.tabSize": 2,
+            "editor.formatOnType": true,
+            "editor.formatOnSave": true,
+            "editor.formatOnPaste": true
+        },
+        "[rmd]": { 
+            "editor.tabSize": 2,
+            "editor.formatOnType": true,
+            "editor.formatOnSave": true,
+            "editor.formatOnPaste": true
+        },
+        "[qmd]": { 
+            "editor.tabSize": 2,
+            "editor.formatOnType": true,
+            "editor.formatOnSave": true,
+            "editor.formatOnPaste": true
+        }
+    
+  }
+```
+
+## lintr
+
+Rstudio
+
+https://code.visualstudio.com/docs/languages/r
+
+https://lintr.r-lib.org/reference/index.html#individual-linters
+
+## Quarto & Rmdの操作について
+
+## Debug方法
+
+## Library
+
+```{r}
+#| echo: false
+library(tidyverse)
+
+```
+
+## session
+
+```{r}
+sessioninfo::session_info()
+```

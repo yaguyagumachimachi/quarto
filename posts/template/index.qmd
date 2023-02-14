@@ -13,7 +13,7 @@ editor:
 ## Library
 
 ```{r}
-#| eval: false
+#| echo: false
 library(tidyverse)
 
 ```

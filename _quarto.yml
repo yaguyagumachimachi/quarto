@@ -17,6 +17,7 @@ format:
     css: styles.css
     toc: true
     number-sections: true
+    code-copy: true
 
 
 
